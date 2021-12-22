@@ -1,7 +1,7 @@
-const qs = require("querystring");
-const fetch = require("node-fetch");
-exports.handler = async (event) => {
-  const { query } = qs.parse(event.body);
+import { parse } from "querystring";
+import fetch from "node-fetch";
+export async function handler(event) {
+  const { query } = parse(event.body);
   const response = await fetch(
     `https://api.unsplash.com/search/photos?query=${query}`,
     {
@@ -20,4 +20,4 @@ exports.handler = async (event) => {
     },
     body: JSON.stringify(response),
   };
-};
+}
